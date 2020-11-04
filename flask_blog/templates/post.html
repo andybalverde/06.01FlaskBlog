@@ -1,0 +1,11 @@
+<!--his will be similar to the index.html file, except that it 
+will only display a single post, in addition to also displaying the contents of the post:-->
+{% extends 'base.html' %}
+
+{% block content %}
+    <!--You add the title block that you defined in the base.html template to make the title of the page reflect 
+    the post title that is displayed in an <h2> heading at the same time.-->
+    <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <p>{{ post['content'] }}</p>
+{% endblock %}

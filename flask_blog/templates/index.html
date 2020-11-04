@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
+    <!--the syntax {% for post in posts %} is a Jinja for loop, which is similar to a Python for loop except that it has to be later 
+    closed with the {% endfor %} syntax. You use this syntax to loop over each item in the posts list that was passed by the index() 
+    function in the line return render_template('index.html', posts=posts). Inside this for loop, you display the post title in an 
+    <h2> heading inside an <a> tag (you’ll later use this tag to link to each post individually).-->
+    {% for post in posts %}
+        <!--You’ll make each post title link to its respective page. 
+        You’ll do this using the url_for() function.-->
+        <a href="{{ url_for('post', post_id=post['id']) }}">
+            <!--You display the title using a literal variable delimiter ({{ ... }}). Remember that post will be a dictionary-like 
+            object, so you can access the post title with post['title']. 
+            You also display the post creation date using the same method.-->
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <!--Here you add an <a> tag to link to the edit() view function, passing in the post['id'] value 
+		to link to the edit page of each post with the Edit link.-->
+		<a href="{{ url_for('edit', id=post['id']) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+		<hr>
+    {% endfor %}
+{% endblock %}
