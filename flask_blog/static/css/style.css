@@ -1,0 +1,20 @@
+/*In addition to the templates folder, Flask web applications also typically have a static folder for hosting static files,
+such as CSS (Cascade Style Sheet) files, JavaScript files, and images the application uses.
+You can create a style.css style sheet file to add CSS to your application.
+A directory called css inside the static directory will host .css files. This is typically done to organize static files 
+in dedicated folders, as such, JavaScript files typically live inside a directory called js, images are put in a directory
+called images (or img), and so on.
+A CSS file is a cascading style sheet (CSS) file used to format the contents of a webpage
+CSS files can define the size, color, font, line spacing, indentation, borders, and location of HTML elements. 
+CSS files are used to create a similar look and feel across websites.*/
+h1 {
+    border: 2px #eee solid;
+    color: brown;
+    text-align: center;
+    padding: 10px;
+}
+/*This particular CSS code will add a border, change the color to brown, center the text, and add a little padding to <h1> tags.*/
+
+/*You can use the CSS language to style the application and make it more appealing using your own design
+. However, if you’re not a web designer, or if you aren’t familiar with CSS, then you can use the Bootstrap toolkit,
+which provides easy-to-use components for styling your application. In this project, we’ll use Bootstrap.*/

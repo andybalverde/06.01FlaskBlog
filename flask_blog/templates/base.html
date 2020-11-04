@@ -1,0 +1,75 @@
+<!--Bootstrap toolkit, which provides easy-to-use components for styling your application.
+You can avoid unnecessary code repetition with the help of a base template file, which all of your HTML files will inherit from.
+Jinja is a web template engine for the Python programming language. The most powerful part of Jinja is template inheritance. 
+Template inheritance allows you to build a base “skeleton” template that contains all the common elements of your site 
+and defines blocks that child templates can override.
+This template, which we’ll call base.html, defines a simple HTML skeleton document that you might use for a simple page. 
+It’s the job of “child” templates to fill the empty blocks with content.
+Now that you have a base template, you can take advantage of it using inheritance for example in the index.html
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Most of the code in this file is standard HTML and code required for Bootstrap. The <meta> tags provide information 
+    for the web browser, the <link> tag links the Bootstrap CSS files, and the <script> tags are links to JavaScript code that 
+    allows some additional Bootstrap features-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--{% block title %} {% endblock %}: A block that serves as a placeholder for a title, you’ll later use it in other 
+    templates to give a custom title for each page in your application without rewriting the entire <head> section each time.-->
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <!--{{ url_for('index')}}: A function call that will return the URL for the index() view function. This is different 
+        from the past url_for() call you used to link a static CSS file, because it only takes one argument, which is the view 
+        function’s name, and links to the route associated with the function instead of a static file.-->
+        <a class="navbar-brand" href="{{ url_for('index')}}">FlaskBlog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">About</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" href="{{url_for('create')}}">New Post</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+		{% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+        <!--{% block content %} {% endblock %}: Another block that will be replaced by content depending on the child template 
+        (templates that inherit from base.html) that will override it.-->
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<!--
+Example of index.html:
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
+{% endblock %}
+
+In this new version of the index.html template, you use the {% extends %} tag to inherit from the base.html template. 
+You then extend it via replacing the content block in the base template with what is inside the content block in the preceding
+code block.This content block contains an <h1> tag with the text Welcome to FlaskBlog inside a title block, which in turn replaces 
+the original title block in the base.html template with the text Welcome to FlaskBlog. This way, you can avoid repeating the same text 
+twice, as it works both as a title for the page and a heading that appears below the navigation bar inherited from the base template.
+  -->
