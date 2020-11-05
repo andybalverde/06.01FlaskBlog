@@ -19,7 +19,7 @@ Now that you have a base template, you can take advantage of it using inheritanc
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!--{% block title %} {% endblock %}: A block that serves as a placeholder for a title, you’ll later use it in other 
+    <!--/% block title %\ /% endblock %\: A block that serves as a placeholder for a title, you’ll later use it in other 
     templates to give a custom title for each page in your application without rewriting the entire <head> section each time.-->
     <title>{% block title %} {% endblock %}</title>
   </head>
@@ -47,7 +47,7 @@ Now that you have a base template, you can take advantage of it using inheritanc
 		{% for message in get_flashed_messages() %}
         <div class="alert alert-danger">{{ message }}</div>
         {% endfor %}
-        <!--{% block content %} {% endblock %}: Another block that will be replaced by content depending on the child template 
+        <!--/% block content %\ /% endblock %\: Another block that will be replaced by content depending on the child template 
         (templates that inherit from base.html) that will override it.-->
         {% block content %} {% endblock %}
     </div>
@@ -62,12 +62,11 @@ Now that you have a base template, you can take advantage of it using inheritanc
 
 <!--
 Example of index.html:
-{% extends 'base.html' %}
-{% block content %}
-    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
-{% endblock %}
-
-In this new version of the index.html template, you use the {% extends %} tag to inherit from the base.html template. 
+/% extends 'base.html' %\
+/% block content %\
+    <h1>/% block title %\ Welcome to FlaskBlog /% endblk %\</h1>
+/% endblock %\
+In this new version of the index.html template, you use the /% extends %\ tag to inherit from the base.html template. 
 You then extend it via replacing the content block in the base template with what is inside the content block in the preceding
 code block.This content block contains an <h1> tag with the text Welcome to FlaskBlog inside a title block, which in turn replaces 
 the original title block in the base.html template with the text Welcome to FlaskBlog. This way, you can avoid repeating the same text 
