@@ -7,10 +7,12 @@
     function in the line return render_template('index.html', posts=posts). Inside this for loop, you display the post title in an 
     <h2> heading inside an <a> tag (you’ll later use this tag to link to each post individually).-->
     {% for post in posts %}
-        <!--You’ll make each post title link to its respective page. 
-        You’ll do this using the url_for() function.-->
+        <!--You’ll make each post title link to its respective page. You’ll do this using the url_for() function.-->
         <a href="{{ url_for('post', post_id=post['id']) }}">
-            <!--You display the title using a literal variable delimiter ({{ ... }}). Remember that post will be a dictionary-like 
+            <!--Here, you pass 'post' to the url_for() function as a first argument. This is the name of the post() view function 
+            and since it accepts a post_id argument, you give it the value post['id']. The url_for() function will return the 
+            proper URL for each post based on its ID            
+            You display the title using a literal variable delimiter. Remember that post will be a dictionary-like 
             object, so you can access the post title with post['title']. 
             You also display the post creation date using the same method.-->
             <h2>{{ post['title'] }}</h2>

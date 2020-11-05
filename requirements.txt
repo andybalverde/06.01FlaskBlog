@@ -1,0 +1,4 @@
+#PIP Requirements File. Execute using: pip install -r requirements.txt
+Flask==1.1.2
+werkzeug==1.0.1
+sqlite3==3.0
