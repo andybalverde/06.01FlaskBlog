@@ -1,4 +1,5 @@
 #PIP Requirements File. Execute using: pip install -r requirements.txt
+#On first run, manually create database.db through command line: python init_db.py
 Flask==1.1.2
 werkzeug==1.0.1
 sqlite3==3.0
