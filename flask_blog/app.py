@@ -174,15 +174,16 @@ def delete(id):
     conn.close()
     flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('index'))
-#This view function only accepts POST requests. This means that navigating to the /ID/delete 
-#route on your browser will return an error because web browsers default to GET requests.
-#However you can access this route via a form that sends a POST request passing in the ID of 
-#the post you want to delete. The function will receive the ID value and use it to get the post 
-#from the database with the get_post() function.
-#Then you open a database connection and execute a DELETE FROM SQL command to delete the post. 
-#You commit the change to the database and close the connection while flashing a message to inform 
-#the user that the post was successfully deleted and redirect them to the index page.
-#Note that you don’t render a template file, this is because you’ll just add a Delete button to the edit page
+'''This view function only accepts POST requests. This means that navigating to the /ID/delete 
+route on your browser will return an error because web browsers default to GET requests.
+However you can access this route via a form that sends a POST request passing in the ID of 
+the post you want to delete. The function will receive the ID value and use it to get the post 
+from the database with the get_post() function.
+Then you open a database connection and execute a DELETE FROM SQL command to delete the post. 
+You commit the change to the database and close the connection while flashing a message to inform 
+the user that the post was successfully deleted and redirect them to the index page.
+Note that you don’t render a template file, this is because you’ll just add a Delete button to the edit page
+'''
 if __name__ == '__main__':
     app.debug = True
     app.run()
